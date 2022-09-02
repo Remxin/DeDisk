@@ -1,0 +1,34 @@
+@mixin default-btn-styles {
+    border-radius: 5px;
+    color: whitesmoke;
+    font-weight: bold;
+    border: none;
+    transition: .3s all;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+    }
+
+}
+
+.blue-button {
+    @include default-btn-styles;
+    background-color: #3D2C8D;
+    box-shadow: 0 0 5px #1C0C5B inset;
+
+    &:hover {
+        background-color: #1C0C5B;
+    }
+}
+
+.purple-button {
+    @include default-btn-styles;
+    background-color: #C996CC;
+    box-shadow: 0 0 5px #916BBF inset;
+
+    &:hover {
+        background-color: #916BBF;
+    }
+}
