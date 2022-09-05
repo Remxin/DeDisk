@@ -1,6 +1,44 @@
+$nav-height: 75px;
+
 .navbar {
+    position: relative;
     width: 100%;
-    height: 75px;
+    height: $nav-height;
     background-color: #3D2C8D;
-    box-shadow: 0 1px 4px #1C0C5B;
+    z-index: 1000;
+
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        
+        .hamburger-menu-icon div {
+            position: absolute;
+            right: 20px;
+            color: white;
+            font-size: 28px;
+            top: 20px;
+        }
+
+        .hamburger-menu-content {
+            position: relative;
+            top: $nav-height;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: fit-content;
+            background-color: #3D2C8D;
+            overflow: hidden;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                height: 40px;
+                font-size: 20px;
+                box-shadow: 0 0px 2px #1C0C5B inset;
+            }
+        }
+    }
 }

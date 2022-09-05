@@ -1,0 +1,36 @@
+.login-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    background-color: transparent;
+    height: 90vh;
+    overflow: hidden;
+
+    h1 {
+        color: #1C0C5B;
+        font-weight: bold;
+        text-align: center;
+        font-size: 38px;
+    }
+
+    .bgc-image {
+        position: absolute;
+        width: 100%;
+        height: 90vh;
+        object-fit: contain;
+        max-width: 500px;
+        bottom: -100px;
+    }
+
+    button {
+        position: relative;
+        width: 120px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        font-size: 14px;
+        z-index: 2;
+        padding: 5px;
+    }
+}

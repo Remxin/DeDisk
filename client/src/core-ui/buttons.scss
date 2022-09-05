@@ -6,6 +6,7 @@
     transition: .3s all;
     padding: 5px;
     cursor: pointer;
+    user-select: none;
 
     &:hover {
         color: white;
@@ -30,5 +31,17 @@
 
     &:hover {
         background-color: #916BBF;
+    }
+}
+
+.blue-bordered-button {
+    @include default-btn-styles;
+    background-color: #efefff;
+    border: 1.5px solid #1C0C5B;
+    color: #3D2C8D;
+
+    &:hover {
+        background-color: #fff;
+        color: #1C0C5B;
     }
 }

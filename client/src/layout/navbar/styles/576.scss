@@ -1,0 +1,26 @@
+@media only screen and (min-width: 576px) {
+    $nav-height: 100px;
+
+    .navbar {
+        height: $nav-height;
+    
+        .hamburger-menu {
+            
+            .hamburger-menu-icon div {
+                right: 30px;
+                font-size: 32px;
+                top: 30px;
+            }
+    
+            .hamburger-menu-content {
+                top: $nav-height;
+    
+                a {
+                    font-size: 20px;
+                    height: 50px;
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+}

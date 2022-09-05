@@ -7,10 +7,12 @@ import App from './App';
 import { configureStore } from "@reduxjs/toolkit"
 import { Provider } from 'react-redux';
 import userReducer from "./features/user"
+import appStatusReducer from "./features/appStatus"
 
 const store = configureStore({
   reducer: {
-    user: userReducer
+    user: userReducer,
+    appStatus: appStatusReducer
   }
 })
 

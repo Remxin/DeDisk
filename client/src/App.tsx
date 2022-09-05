@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 // contexts
@@ -13,8 +13,11 @@ import Navbar from './layout/navbar/Navbar';
 // pages
 import Home from './pages/home/Home';
 import Auth from './pages/auth/Auth';
+import Drive from './pages/drive/Drive';
 
 function App() {
+
+
   return (
     <NextUIProvider>
       <Router>
@@ -22,6 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}></Route>
           <Route path="/login" element={<Auth/>}></Route>
+          <Route path="/drive/" element={<Drive/>}></Route>
+          <Route path="/drive/:folder" element={<Drive/>}></Route>
         </Routes>
       </Router>
     </NextUIProvider>
