@@ -10,6 +10,9 @@ import { Popover } from "@nextui-org/react"
 import { FaRegArrowAltCircleRight, FaPlus, FaHistory, FaFolderPlus, FaFileMedical, FaFileImport, FaCloud } from 'react-icons/fa'
 import { HiCube, HiShare, HiStar } from "react-icons/hi"
 
+// helpers 
+import { BytesHelper } from '../../helpers/bytesHelper'
+
 // styles
 import { motion, useAnimation } from 'framer-motion'
 import { useMediaQuery } from 'react-responsive'
@@ -58,8 +61,8 @@ const ToolbarMenu: React.FC = () => {
             </ul>
             <div className="free-space">
                 <p><FaCloud/> Space used</p>
-                <progress id='used-space' value={user.usedSpace} max={+user.plan * 1000* 1000 * 8} />
-                <label className="used-space-label" htmlFor="used-space">used {Math.ceil((user.usedSpace / 1000/1000/8) * 100)/100} of {user.plan}GB</label>
+                <progress id='used-space' value={user.usedSpace} max={BytesHelper.planGBtoBytes(user.plan)} />
+                <label className="used-space-label" htmlFor="used-space">used {BytesHelper.spaceBytesToGB(user.usedSpace) + "GB"} of {user.plan}GB</label>
                 <button className="change-plan blue-bordered-button">Change current plan</button>
             </div>
         </motion.div>
