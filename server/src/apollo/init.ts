@@ -2,6 +2,7 @@ import { ApolloServer } from "apollo-server-express"
 import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import express from "express";
 import http from "http";
+import { reqResObjType } from "./types";
 
 // --- importing typeDefs and resolvers ---
 import { typeDefs } from "./typeDefs";
@@ -13,6 +14,9 @@ export async function startApolloServer() {
     const server = new ApolloServer({
       typeDefs,
       resolvers,
+      context: ({req, res}: reqResObjType) => ({
+        req, res
+      }),
       csrfPrevention: true,
       cache: 'bounded',
       plugins: [
@@ -24,6 +28,7 @@ export async function startApolloServer() {
     server.applyMiddleware({
       app,
       path: "/",
+      cors: { credentials: true, origin: true}
     });
   
     await new Promise<void>((resolve) =>

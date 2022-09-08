@@ -15,4 +15,29 @@ model User {
   name String
   email String @unique
   password String
+  records Record[]
+  shares Share[]
+}
+
+model Record {
+  id String @id @default(uuid())
+  name String
+  size Float
+  rootDir String
+  type String // folder or file
+  user User @relation(fields: [userId], references: [id]) 
+  userId String
+  shares Share[]
+}
+
+model Share {
+  id String @id @default(uuid())
+  access String // 'read-only' or 'edit' in future
+  token String  // JSON-WEB-TOKEN
+  expires Float // server will automatically delete
+  fileName String
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  record Record @relation(fields: [recordId], references: [id])
+  recordId String
 }
