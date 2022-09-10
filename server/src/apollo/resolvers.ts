@@ -47,13 +47,15 @@ export const resolvers = {
     },
 
     Mutation: {
-        signup: async (root: any, args: { input: signupProps }) => {
+        signup: async (root: any, args: { input: signupProps }, { req, res}: reqResObjType) => {
             const { name, email, password } = args.input
             const hashedPass = await hashHelper.hashPass(password)
    
             if (hashedPass.err) return { err: "Internal server error"}
             //@ts-ignore
             const user = await prisma.user.create({ data: { name, email, password: hashedPass.res}})
+            const token = tokenHelper.signToken(user.id)
+            res.cookie("token", token, { maxAge: 5 * 24 * 60 * 60 * 1000})
             
             return user
             

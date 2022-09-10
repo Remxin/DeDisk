@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-export const verifyUserQuery = gql`
+export const VERIFYUSERQUERY = gql`
   query Query {
   verifyUser {
     id

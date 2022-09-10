@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from "../features/user"
-import { verifyUserQuery } from '../graphql/queries/verifyUser'
+import { VERIFYUSERQUERY } from '../graphql/queries/verifyUser'
 import { userType } from '../features/user'
 
 const useAuth = () => {
@@ -11,14 +11,13 @@ const useAuth = () => {
     const [err, setErr] = useState('')
     const user = useSelector((state:any) => state.user.value)
 
-    const { data, loading, error } = useQuery(verifyUserQuery)
+    const { data, loading, error } = useQuery(VERIFYUSERQUERY)
 
     useEffect(() => {
         if (loading) return
         if (error) return setErr("User not logged")
         
         const user = data.verifyUser
-        console.log(user);
             
         try {
             dispatch(setUser({ name: user.name, email: user.email, id: user.id, plan: user.plan, usedSpace: user.usedSpace}))

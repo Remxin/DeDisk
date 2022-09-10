@@ -2,7 +2,7 @@ import React, { MutableRefObject, useEffect, useRef } from 'react'
 import { Modal, Input } from "@nextui-org/react"
 import appConstants from "../../constants/app"
 import { useLazyQuery } from '@apollo/client'
-import { loginQuery } from '../../graphql/queries/login'
+import { LOGINQUERY } from '../../graphql/queries/login'
 
 
 import "../../core-ui/buttons.scss"
@@ -19,12 +19,11 @@ type componentProps = {
 }
 
 const LoginModal = ({ visibleManage, confirmFunction, className = "" }: componentProps) => {
-    const { login } = useAuth()
     
     const emailRef = useRef()as MutableRefObject<HTMLInputElement>
     const passwordRef = useRef()as MutableRefObject<HTMLInputElement>
 
-    const [ loginUser, { error, loading, data}] = useLazyQuery(loginQuery, {
+    const [ loginUser, { error, loading, data}] = useLazyQuery(LOGINQUERY, {
         variables: { email: emailRef.current?.value, password: passwordRef.current?.value }
     })
 

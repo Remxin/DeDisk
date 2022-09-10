@@ -6,7 +6,7 @@ import useAuth from './hooks/useAuth';
 import { NextUIProvider } from "@nextui-org/react"
 
 //router
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 
 //layout 
 import Navbar from './layout/navbar/Navbar';
@@ -29,12 +29,17 @@ function App() {
   return (
     <NextUIProvider>
       <Router>
-        <Navbar/>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home/>}></Route>
+          { userLogged ? <>
+            <Route path="/" element={<Home/>}></Route>
+            <Route path="/drive/" element={<Drive/>}></Route>
+            <Route path="/drive/:folder" element={<Drive/>}></Route>
+            <Route path="/login" element={<Navigate to="/"/>}></Route>
+          </> : <>
+          <Route path="*" element={<Navigate to="/login"/>}></Route>
           <Route path="/login" element={<Auth/>}></Route>
-          <Route path="/drive/" element={<Drive/>}></Route>
-          <Route path="/drive/:folder" element={<Drive/>}></Route>
+          </>}
         </Routes>
       </Router>
     </NextUIProvider>

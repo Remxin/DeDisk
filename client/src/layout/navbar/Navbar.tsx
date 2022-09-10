@@ -63,10 +63,6 @@ const mobileMenuVariants = {
 
 const links = [
   {
-    path: "/login",
-    name: "Login"
-  },
-  {
     path: "/drive",
     name: "Drive"
   },
