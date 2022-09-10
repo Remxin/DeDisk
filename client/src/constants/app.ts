@@ -1,6 +1,6 @@
 const appConstants = {
     name: "DaDrive",
-    description: "Secure storage for files"
+    description: "Storage for files and containers"
 }
 
 export default appConstants 

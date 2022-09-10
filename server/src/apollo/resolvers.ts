@@ -1,4 +1,4 @@
-import { prisma } from ".."
+import { prisma } from "../index"
 import { signupProps, loginProps, reqResObjType } from "./types"
 import { NotFoundError, WrongPasswordError, InternalServerError, CookiesError, UserAuthError} from "./customErrors"
 import hashHelper from "../helpers/hashHelper"
@@ -29,8 +29,10 @@ export const resolvers = {
             if (!req || !req.headers) throw new CookiesError("Please allow cookies on this site")
             
             const token = cookie.parse(req.headers.cookie).token
+            if (!token) throw new UserAuthError("User not logged")
             
             const decodedToken = tokenHelper.decodeToken(token)
+
             if (!decodedToken.id) throw new UserAuthError("User is not valid")
             const user = await prisma.user.findUnique({ where: { id: decodedToken.id }})
 
@@ -38,6 +40,7 @@ export const resolvers = {
         },
 
         users: async () => {
+            
             const users = prisma.user.findMany()
             return users
         }

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState: appStatusType = { navbarOpened: false }
+const initialState: appStatusType = { navbarOpened: false, mode: "blue" }
 
 export type appStatusType = {
  navbarOpened: boolean
+ mode: "blue" | "purple"
 }
 
 export const appStatusSlice = createSlice({

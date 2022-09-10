@@ -9,6 +9,16 @@ import { Provider } from 'react-redux';
 import userReducer from "./features/user"
 import appStatusReducer from "./features/appStatus"
 
+// apollo client
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+
+// variables
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache(),
+  credentials: "include",
+});
+
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -22,7 +32,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </Provider>
   </React.StrictMode>
 );

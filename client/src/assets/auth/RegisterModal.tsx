@@ -28,9 +28,9 @@ const RegisterModal = ({ visibleManage, confirmFunction, className}: componentPr
             <p>Register</p>
         </Modal.Header>
         <Modal.Body>
-            <Input type="text" placeholder='Enter your name: ' color="primary" bordered/>
-            <Input type="text" placeholder='Enter your email: ' color="primary" bordered/>
-            <Input type="password" placeholder='Enter your password: ' color="primary" bordered/>
+            <Input type="text" placeholder='Enter your name: ' color="secondary" bordered/>
+            <Input type="text" placeholder='Enter your email: ' color="secondary" bordered/>
+            <Input type="password" placeholder='Enter your password: ' color="secondary" bordered/>
             <button className="purple-button">Register</button>
         </Modal.Body>
         <Modal.Footer className="modal-footer">

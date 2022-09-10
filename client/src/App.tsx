@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import useAuth from './hooks/useAuth';
 
 // contexts
 import { NextUIProvider } from "@nextui-org/react"
@@ -15,7 +16,14 @@ import Home from './pages/home/Home';
 import Auth from './pages/auth/Auth';
 import Drive from './pages/drive/Drive';
 
+
+
+
+
 function App() {
+  const { userLogged, error, user} = useAuth()
+  
+  
 
 
   return (

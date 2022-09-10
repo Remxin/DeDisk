@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 export const prisma = new PrismaClient()
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5001
 
 app.use(cors({
     credentials: true,

@@ -18,6 +18,10 @@ export const typeDefs = gql`
         email: String!
         name: String!
         password: String!
+        plan: String!
+        usedSpace: Float!
+        records: [Record]
+        shares: [Share]
     }
 
     type Record {
@@ -28,6 +32,18 @@ export const typeDefs = gql`
         type: RecordType!
         userId: String!
         user: User!
+    }
+
+    type Share {
+        id: ID!
+        access: String
+        token: String 
+        expires: Float 
+        fileName: String
+        user: User
+        userId: String
+        record: Record 
+        recordId: String
     }
 
     input CreateUserInput {

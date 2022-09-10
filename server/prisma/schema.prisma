@@ -15,6 +15,8 @@ model User {
   name String
   email String @unique
   password String
+  plan String @default("15")
+  usedSpace Float @default(0)
   records Record[]
   shares Share[]
 }

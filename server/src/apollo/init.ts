@@ -28,7 +28,7 @@ export async function startApolloServer() {
     server.applyMiddleware({
       app,
       path: "/",
-      cors: { credentials: true, origin: true}
+      cors: { credentials: true, origin: true, optionsSuccessStatus: 200}
     });
   
     await new Promise<void>((resolve) =>
