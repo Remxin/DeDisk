@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Record" ADD COLUMN     "timestamps" DOUBLE PRECISION NOT NULL DEFAULT 0;

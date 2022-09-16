@@ -26,8 +26,9 @@ model Record {
   name String
   size Float
   rootDir String
+  timestamps Float @default(0)
   type String // folder or file
-  user User @relation(fields: [userId], references: [id]) 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) 
   userId String
   shares Share[]
 }
@@ -38,8 +39,8 @@ model Share {
   token String  // JSON-WEB-TOKEN
   expires Float // server will automatically delete
   fileName String
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
-  record Record @relation(fields: [recordId], references: [id])
+  record Record @relation(fields: [recordId], references: [id], onDelete: Cascade)
   recordId String
 }

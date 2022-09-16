@@ -3,7 +3,7 @@ import './App.css';
 import useAuth from './hooks/useAuth';
 
 // contexts
-import { NextUIProvider } from "@nextui-org/react"
+import { Loading, NextUIProvider } from "@nextui-org/react"
 
 //router
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
@@ -21,10 +21,12 @@ import Drive from './pages/drive/Drive';
 
 
 function App() {
-  const { userLogged, error, user} = useAuth()
+  const { userLogged, error, user, loading} = useAuth()
   
   
-
+  if (loading) {
+    return <Loading>Loading app...</Loading>
+  }
 
   return (
     <NextUIProvider>

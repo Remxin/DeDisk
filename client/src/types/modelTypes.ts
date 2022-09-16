@@ -8,5 +8,10 @@ export type userType = {
 }
 
 export type recordType = {
-    
+    name: string
+    rootDir?: string
+    size: number
+    userId?: string
+    timestamps: number
+    type: string
 }

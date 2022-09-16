@@ -34,3 +34,13 @@ export const toolbarContentVariants = {
         transition: { delay: .2 }
     }
 }
+
+export const contextVariants = {
+    hide: {
+        opacity: 0
+    },
+
+    show: {
+        opacity: 1
+    }
+}

@@ -15,3 +15,10 @@ export type loginProps = {
     email: string,
     password: string
 }
+
+export type createDirProps = {
+    name: string
+    rootDir: string
+    type: "folder"
+    userId: string
+}

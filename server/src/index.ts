@@ -2,6 +2,8 @@ import express from "express"
 import { startApolloServer } from "./apollo/init"
 import { PrismaClient } from "@prisma/client"
 import cors from 'cors'
+import filesHelper from "./helpers/filesHelper"
+
 const cookieParser = require('cookie-parser')
 
 export const prisma = new PrismaClient()

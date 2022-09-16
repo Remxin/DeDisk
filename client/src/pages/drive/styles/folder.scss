@@ -1,0 +1,80 @@
+.folder {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    padding-left: 10px;
+    margin-top: 2px;
+    box-shadow: 0 0 2px lightgray inset;
+
+    .darken-bgc {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #00000078;
+        z-index: 3005;
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+        // z-index: 3006;
+        user-select: none;
+        color: #343434;
+        font-size: 10px;
+        height: 100%;
+
+        svg {
+            height: 100%;
+            margin-right: 5px;
+            font-size: 13px;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .name {
+            width: 35px;
+            left: 5px;
+            margin-right: 5px;
+        }
+
+        .type {
+            left: 20px;
+            color: #916BBF;
+            
+        }
+
+        .size {
+            left: 25px;
+            color: #3D2C8D;
+        }
+
+        .timestamps {
+            left: 30px;
+            color: #aaaaaa;
+            font-size: 7px;
+        }
+    }
+    .data-holder {
+        position: absolute;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 10;
+    }
+  
+}

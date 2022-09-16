@@ -10,6 +10,9 @@ export const typeDefs = gql`
         login(email: String!, password: String!): User
         verifyUser: User
         users: [User]
+        userRecords(rootDir: String!): [Record]
+        allRecords: [Record]
+        deleteAllRecords: [Record]
     }
 
 
@@ -28,6 +31,7 @@ export const typeDefs = gql`
         id: ID!
         name: String!
         size: Float!
+        timestamps: Float!
         rootDir: String!
         type: RecordType!
         userId: String!
@@ -52,7 +56,18 @@ export const typeDefs = gql`
         password: String!
     }
 
+    input CreateDirInput {
+        name: String!
+        rootDir: String!
+        type: String!
+    }
+
     type Mutation {
         signup(input: CreateUserInput!): User
+        deleteUser: User
+        createDir(input: CreateDirInput!): Record
+        deleteDir(dirId: String!): Record
+        changeRecordName(recordId: String!, newName: String!): Record
+   
     }
 `

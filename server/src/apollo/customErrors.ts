@@ -39,3 +39,19 @@ export class UserAuthError extends ApolloError {
       Object.defineProperty(this, 'name', { value: 'User is not valid' });
     }
 }
+
+export class RecordError extends ApolloError {
+  constructor(message: string) {
+      super(message, 'RECORD_ERROR');
+  
+      Object.defineProperty(this, 'name', { value: 'Something gone wrong with record' });
+    }
+}
+
+export class PermissionError extends ApolloError {
+  constructor(message: string) {
+      super(message, 'PERMISSION_ERROR');
+  
+      Object.defineProperty(this, 'name', { value: "You don't have permissions to perform this action" });
+    }
+}

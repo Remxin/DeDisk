@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+@font-face {
+  font-family: "FontAwesome";
+  src: url("./fonts/fa-brands-400.ttf"),
+      url('./fonts/fa-brands-400.woff2')
+      url('./fonts/fa-regular-400.ttf')
+      url('./fonts/fa-regular-400.woff2')
+      url('./fonts/fa-solid-900.ttf')
+      url('./fonts/fa-v4compatibility.ttf')
+      url('./fonts/fa-v4compatibility.woff2')
+      
+}
+
+select {
+  font-family: "FontAwesome", sans-serif;
+}
