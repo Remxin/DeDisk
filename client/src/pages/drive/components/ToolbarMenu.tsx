@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 
 import { toolbarContentVariants } from '../variants'
 import { Popover } from '@nextui-org/react'
+import FilesInputModal from '../../../components/filesInputModal/FilesInputModal'
 
 //helpers
 import { BytesHelper } from '../../../helpers/bytesHelper'
@@ -15,7 +16,7 @@ import { HiCube, HiShare, HiStar} from "react-icons/hi"
 // types
 import { userType } from '../../../features/user'
 
-const PopoverContent: React.FC = ({setRecords, setIsPopoverOpened, setExpandToolbar}: any) => {
+const PopoverContent: React.FC = ({setRecords, setIsPopoverOpened, openFilesInputModal}: any) => {
     
     function createFolder() {
         setIsPopoverOpened(false)
@@ -26,8 +27,8 @@ const PopoverContent: React.FC = ({setRecords, setIsPopoverOpened, setExpandTool
     <Popover.Content onBlur={() => setIsPopoverOpened(false)}>
         <ul className="add-menu">
             <li onClick={() => createFolder()}><FaFolderPlus/> New Folder</li>
-            <li><FaFileMedical/> New File</li>
-            <li><FaFileImport/> Upload File</li>
+            {/* <li><FaFileMedical/> New File</li> */}
+            <li onClick={() => openFilesInputModal(true)}><FaFileImport/> Upload File</li>
         </ul>
     </Popover.Content>
     )
@@ -37,6 +38,9 @@ const ToolbarMenu: React.FC = ({ setRecords, setExpandToolbar }: any) => {
     const user = useSelector((state: { user: { value: userType}}) => state.user.value)
 
     const [isPopoverOpened, setIsPopoverOpened] = useState(false)
+    const [isSelectFilesModalOpened, setIsSelectFilesModalOpened] = useState(false)
+    console.log(isSelectFilesModalOpened);
+    
     return (
         <motion.div className='toolbar-menu' variants={toolbarContentVariants} initial="hide" animate="show" >
             <p className="add">
@@ -46,7 +50,7 @@ const ToolbarMenu: React.FC = ({ setRecords, setExpandToolbar }: any) => {
                         <button><FaPlus/> Add new</button>
                     </Popover.Trigger>
                     {/* @ts-ignore */}
-                    <PopoverContent setRecords={setRecords} setIsPopoverOpened={setIsPopoverOpened} setExpandToolbar={setExpandToolbar}/>
+                    <PopoverContent setRecords={setRecords} setIsPopoverOpened={setIsPopoverOpened} openFilesInputModal={setIsSelectFilesModalOpened}/>
                 </Popover>
                 
                 </p>
@@ -62,6 +66,7 @@ const ToolbarMenu: React.FC = ({ setRecords, setExpandToolbar }: any) => {
                 <label className="used-space-label" htmlFor="used-space">used {BytesHelper.spaceBytesToGB(user.usedSpace) + "GB"} of {user.plan}GB</label>
                 <button className="change-plan blue-bordered-button">Change current plan</button>
             </div>
+            <FilesInputModal visible={isSelectFilesModalOpened} setVisible={setIsSelectFilesModalOpened}/>
         </motion.div>
     )
 }

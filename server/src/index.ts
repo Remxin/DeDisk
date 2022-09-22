@@ -17,6 +17,7 @@ app.use(cors({
     optionsSuccessStatus: 200
 }))
 app.use(cookieParser())
+app.use(express.static("/static/uploads"))
 
 
 app.listen(PORT, async () => {

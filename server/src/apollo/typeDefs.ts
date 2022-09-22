@@ -1,9 +1,15 @@
 import { gql } from "apollo-server-express"
 
 export const typeDefs = gql`
+    scalar Upload
+
     enum RecordType {
         file
         folder
+    }
+
+    type File {
+        url: String!
     }
 
     type Query {
@@ -62,12 +68,17 @@ export const typeDefs = gql`
         type: String!
     }
 
+    input FileInput {
+        location: String!
+        file: Upload!
+    }
+
     type Mutation {
         signup(input: CreateUserInput!): User
         deleteUser: User
         createDir(input: CreateDirInput!): Record
         deleteDir(dirId: String!): Record
         changeRecordName(recordId: String!, newName: String!): Record
-   
+        uploadFile (fileData: FileInput!): File!
     }
 `

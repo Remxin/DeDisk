@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { prisma } from "../index"
 import { signupProps, loginProps, reqResObjType, createDirProps } from "./types"
 import { NotFoundError, WrongPasswordError, InternalServerError, CookiesError, UserAuthError, RecordError, PermissionError} from "./customErrors"
@@ -7,13 +9,21 @@ import recordsHelper from "../helpers/recordsHelper"
 import { verifyToken, findRecordAndCheckPermissions } from "./helperFunctions"
 import filesHelper from "../helpers/filesHelper"
 
+import path from 'path'
+import fs from 'fs'
+
+
+// import { Upload as GraphQLUpload } from 'graphql-upload/Upload.mjs'
+
 
 
 export const resolvers = {
     Query: {
         login: async (_: any, args: any, { res, req }: reqResObjType) => {
             const { email, password } = args
+            console.log(email);
             const user = await prisma.user.findUnique({ where: { email }})
+            
             if (!user) throw new NotFoundError("User not found")
             const passwordsMatch = await hashHelper.comparePass(password, user.password)
             
@@ -30,7 +40,7 @@ export const resolvers = {
         verifyUser: async (_: any,  __: any, {req, res}: reqResObjType) => {        
             const userId = await verifyToken(req)
             const user = await prisma.user.findUnique({ where: { id: userId }})
-
+            
             return user
         },
 
@@ -43,7 +53,6 @@ export const resolvers = {
         userRecords: async (_:any, args: any, {req, res}: reqResObjType) => {
             const userId = await verifyToken(req)
             const { rootDir } = args
-            console.log(rootDir);
             
             const records = await prisma.record.findMany({ where: {rootDir, userId }})
 
@@ -152,6 +161,25 @@ export const resolvers = {
             const isFolderRenamed = await filesHelper.renameDir(userId, dirData.rootDir + dirData.name, updatedDirData.rootDir + updatedDirData.name)
             if (!isFolderRenamed) throw new InternalServerError("Internal server error - cannot rename folder")
             return updatedDirData
+        },
+
+        uploadFile: async (_: any, args: any, { req, res }: reqResObjType) => {
+            const userId = await verifyToken(req)
+            console.log(userId);
+            
+            const { location, file } = args.fileData
+            console.log(args.fileData);
+            
+            
+           const { createReadStream, filename, mimetype, encoding} = await file
+           const stream = createReadStream()
+
+           const pathLocation = filesHelper.getUserFilePath(userId, location)
+           await stream.pipe(fs.createWriteStream(pathLocation))
+
+           return {
+            url: `http://localhost:5001/${userId}${location}`
+           }
         }
     }
 }

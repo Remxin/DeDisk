@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -11,12 +12,14 @@ import appStatusReducer from "./features/appStatus"
 
 // apollo client
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client'
 
 // variables
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: "http://localhost:4000",
+  link: createUploadLink({uri: "http://localhost:4000", credentials: "include"}),
   cache: new InMemoryCache(),
-  credentials: "include",
+  credentials: "include"
 });
 
 const store = configureStore({

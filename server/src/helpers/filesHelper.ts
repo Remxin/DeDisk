@@ -52,9 +52,14 @@ const renameDir = (userId: string, dirPath: string, newDirPath: string) => {
     })
 }
 
+const getUserFilePath = (userId: string, dirPath: string) => {
+    return uploadDir + `/${userId}${dirPath}/`
+}
+
 export default {
     createUserRootDir,
     createDir,
     deleteDir,
-    renameDir
+    renameDir,
+    getUserFilePath
 }

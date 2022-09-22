@@ -18,7 +18,6 @@ const ContextMenu = ({x, y, element, setRecords, records, Records}: componentTyp
     
     function deleteRecord() {
         const foundItemId = element.dataset.id
-        console.log(foundItemId);
         if (!foundItemId) return
         del.deleteFolder(foundItemId)
         
@@ -29,21 +28,17 @@ const ContextMenu = ({x, y, element, setRecords, records, Records}: componentTyp
     }
 
     function changeRecordName() {
-        
         if (!element.dataset.id || !element.dataset.name || !element.dataset.isfolder) return
 
         let foundItem = records.find((item) => item.name === element.dataset.name)
             foundItem = {...foundItem, forceEdit: !!!foundItem?.forceEdit, refresh: !!!foundItem.refresh}
-        // foundItem.props.forceEdit = true
-        // foundItem.__typename = null
-        console.log(foundItem);
         setRecords((prev: any) => {
             return prev.filter((item: any) => item.name !== element.dataset.name)
         })
         setRecords((prev: any) => ([...prev, foundItem]))
-   
-        
     }
+
+    
   return (
     <AnimatePresence>
         <motion.ul className="custom-context-menu" style={{ top: y, left: x}} variants={contextVariants} initial="hide" animate="show" exit="hide">
